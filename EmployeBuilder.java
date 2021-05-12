@@ -6,12 +6,17 @@ public class EmployeBuilder {
 		
 		int isPartime = 1;
 		int isFullTime = 2;
+		int hrsInMonth = 100;
 		int wagePerHour = 20;
+		int numWorkDays = 20;
+		int totalEmpHours = 0;
 		int workHours = 0;
 		int totalSalary = 0;
-		int numWorkDays = 20;
-		for( int day=1; day<=numWorkDays; day++)
+		int workDays = 0;
+		
+		while(totalEmpHours <= hrsInMonth && workDays <= numWorkDays)
 		{
+			workDays++ ;
 		int attendance = (int) ((Math.random() * 10) % 3);
 		switch (attendance){
 		case 1: workHours = 8;
@@ -20,10 +25,13 @@ public class EmployeBuilder {
 		break;
 		case 3: workHours = 0;
 		}
-			int salary = (workHours * wagePerHour);
-			totalSalary = (salary * numWorkDays);
+		totalEmpHours = (workHours + totalEmpHours);
+		System.out.println("Total Working hours :");
+		System.out.println (totalEmpHours);
+			
 		}
-			System.out.println("Wages for a month :");
+			totalSalary = (totalEmpHours * wagePerHour);
+			System.out.println("Total Wages for a working hours and days :");
 			System.out.println (totalSalary);
 		}
 	}
