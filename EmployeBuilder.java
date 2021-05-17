@@ -6,7 +6,6 @@ public class EmployeBuilder
 	{
 		System.out.println("Welcome in employee wage");
 		
-		int isFullTime = 1;
 		int wagePerHour = 20;
 		int workHours = 0;
 		double attendance = Math.floor(Math.random() * 10) % 2; 
