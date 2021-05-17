@@ -6,8 +6,6 @@ public class EmployeBuilder
 	{
 		System.out.println("Welcome in employee wage");
 		
-		int isPartime = 1;
-		int isFullTime = 2;
 		int wagePerHour = 20;
 		int workHours = 0;
 		int totalSalary = 0;
