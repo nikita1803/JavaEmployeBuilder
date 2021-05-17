@@ -14,7 +14,7 @@ public class EmployeBuilder
 		int numWorkDays = 20;
 		for( int day = 1; day <= numWorkDays; day++)
 		{
-		int attendance = (int) ((Math.random() * 10) % 3);
+		int attendance = (int) ((Math.random() * 10) % 3 + 1);
 		switch (attendance)
 		{
 			case 1: 
