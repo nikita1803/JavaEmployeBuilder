@@ -34,19 +34,17 @@ public class EmployeBuilder
 				case 2: 
 					workHours = workHours+HalfWorkHour;
 				break;
-				case 3: 
+				default: 
 					workHours = workHours+0;
 			}
-			System.out.println("Total Working hours :");
-			System.out.println (workHours);
+			System.out.println("Total Working hours :" +workHours);
 		}
 			return workHours;
 	}
 	public static void CalculateWages (int WagePerHour, int workHours) 
 	{
 		int totalSalary = ( WagePerHour * workHours);
-		System.out.println("Total Wages of the employee :");
-		System.out.println (totalSalary);
+		System.out.println("Total Wages of the employee :" +totalSalary);
 	}
 	public static void main(String[] args)
 	{
