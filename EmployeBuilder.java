@@ -5,6 +5,8 @@ public class EmployeBuilder
 	public static void main(String[] args) 
 	{
 		System.out.println("Welcome in employee wage");
+
+		int hrsInMonth = 100;
 		int wagePerHour = 20;
 		int workHours = 0;
 		int totalSalary = 0;
