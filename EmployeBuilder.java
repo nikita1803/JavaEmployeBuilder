@@ -1,4 +1,5 @@
 package employeBuilderUC1;
+<<<<<<< HEAD
 import java.util.Scanner;
 public class EmployeBuilder 
 {
@@ -70,6 +71,25 @@ public class EmployeBuilder
 		
 		int totalworkhours = emp.Attendance(emp.MaxHours,emp.TotalWorkDays,emp.FullWorkHour,emp.HalfWorkHour);
 		emp.CalculateWages(emp.WagePerHour,totalworkhours);
+=======
+
+public class EmployeBuilder 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("Welcome in employee wage");
+		
+		int isFullTime = 1;
+		double attendance = Math.floor(Math.random() * 10) % 2; 
+		if(attendance == 1) 
+		{
+		  System.out.println("Employee is present");
+		}
+		else 
+		{
+			System.out.println("Employee is absent");
+		}
+>>>>>>> UC1_EmployeAttendance
 	}
 }
 
