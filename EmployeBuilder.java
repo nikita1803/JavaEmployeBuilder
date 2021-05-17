@@ -23,9 +23,8 @@ public class EmployeBuilder {
 			workHours = 0;
 			System.out.println("no salary");
 		}
-			int dailyWage = (wagePerHour * workHours);
-			System.out.println("Part time or Full time salray of employe :");
-			System.out.println (dailyWage);
+		int dailyWage = (wagePerHour * workHours);
+		System.out.println("Part time or Full time salray of employe :" +dailyWage);
 	}
 }
 	
