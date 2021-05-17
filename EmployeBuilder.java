@@ -1,40 +1,77 @@
 package employeBuilderUC1;
-
-public class EmployeBuilder {
-	public static void main(String[] args) {
+import java.util.Scanner;
+public class EmployeBuilder 
+{
+	public String CompanyName;
+	public int MaxHours;
+	public int WagePerHour;
+	public int FullWorkHour;
+	public static int HalfWorkHour;
+	public int TotalWorkDays;
+	
+	public EmployeBuilder()
+	{
+		this.CompanyName = "";
+		this.MaxHours = 0;
+		this.WagePerHour = 0;
+		this.FullWorkHour = 0;
+		this.HalfWorkHour = 0;
+		this.TotalWorkDays = 0;
+	}
+	public static int Attendance(int MaxHours , int TotalWorkDays,int FullWorkHour,int HalfWaorkHour) 
+	{
+		int workDays = 0;
+		int workHours = 0;
+		while(workHours <= MaxHours && workDays <= TotalWorkDays)
+		{
+			workDays++ ;	
+			int attendance = (int) Math.floor(Math.random() * 10) % 3; 
+			switch (attendance)
+			{
+				case 1: 
+					workHours = workHours+FullWorkHour;
+				break;
+				case 2: 
+					workHours = workHours+HalfWorkHour;
+				break;
+				case 3: 
+					workHours = workHours+0;
+			}
+			System.out.println("Total Working hours :");
+			System.out.println (workHours);
+		}
+			return workHours;
+	}
+	public static void CalculateWages (int WagePerHour, int workHours) 
+	{
+		int totalSalary = ( WagePerHour * workHours);
+		System.out.println("Total Wages of the employee :");
+		System.out.println (totalSalary);
+	}
+	public static void main(String[] args)
+	{
 		System.out.println("Welcome in employee wage");
 		
-		int isPartime = 1;
-		int isFullTime = 2;
-		int hrsInMonth = 100;
-		int wagePerHour = 20;
-		int numWorkDays = 20;
-		int totalEmpHours = 0;
-		int workHours = 0;
-		int totalSalary = 0;
-		int workDays = 0;
+		EmployeBuilder emp = new EmployeBuilder();
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Enter the company Name :");
+		emp.CompanyName = sc.nextLine();
+		sc.nextLine();
+		System.out.println("Enter the Full Work hour :");
+		emp.FullWorkHour = sc.nextInt();
+		System.out.println("Enter the half Work hour :");
+		emp.HalfWorkHour = sc.nextInt();
+		System.out.println("Enter the Maximum working hour :");
+		emp.MaxHours = sc.nextInt();
+		System.out.println("Enter the Wage per hour :");
+		emp.WagePerHour = sc.nextInt();
+		System.out.println("Enter the total work days :");
+		emp.TotalWorkDays = sc.nextInt();
 		
-		while(totalEmpHours <= hrsInMonth && workDays <= numWorkDays)
-		{
-			workDays++ ;
-		int attendance = (int) ((Math.random() * 10) % 3);
-		switch (attendance){
-		case 1: workHours = 8;
-		break;
-		case 2: workHours = 4;
-		break;
-		case 3: workHours = 0;
-		}
-		totalEmpHours = (workHours + totalEmpHours);
-		System.out.println("Total Working hours :");
-		System.out.println (totalEmpHours);
-			
-		}
-			totalSalary = (totalEmpHours * wagePerHour);
-			System.out.println("Total Wages for a working hours and days :");
-			System.out.println (totalSalary);
-		}
+		int totalworkhours = emp.Attendance(emp.MaxHours,emp.TotalWorkDays,emp.FullWorkHour,emp.HalfWorkHour);
+		emp.CalculateWages(emp.WagePerHour,totalworkhours);
 	}
+}
 
 	
 
