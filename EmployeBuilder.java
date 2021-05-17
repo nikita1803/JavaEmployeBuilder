@@ -1,26 +1,31 @@
 package employeBuilderUC1;
 
-public class EmployeBuilder 
-{
+public class EmployeBuilder {
 	public static void main(String[] args) 
 	{
 		System.out.println("Welcome in employee wage");
-		
+		int isPartime = 2;
 		int isFullTime = 1;
 		int wagePerHour = 20;
 		int workHours = 0;
-		double attendance = Math.floor(Math.random() * 10) % 2; 
-		if(attendance == 1) 
+
+		double attendance = Math.floor(Math.random() * 10) % 3; 
+		if(isPartime == attendance)
 		{
-		  System.out.println("Employee is present");
-		  workHours=8;
+			workHours = 4;
+		}
+		else if (isFullTime == attendance) 
+		{
+			workHours = 8;
 		}
 		else 
 		{
-			System.out.println("Employee is absent");
+			workHours = 0;
+			System.out.println("no salary");
 		}
 		int dailyWage = (wagePerHour * workHours);
-		System.out.println ("Daily wage of the employee is : " +dailyWage);
+		System.out.println("Part time or Full time salray of employe :");
+		System.out.println (dailyWage);
 	}
 }
 
