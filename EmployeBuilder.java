@@ -22,12 +22,11 @@ public class EmployeBuilder
 			case 2: 
 				workHours = 4;
 			break;
-			case 3: 
-				workHours = 0;
-			break;
-		}
-		int salary = (workHours * wagePerHour);
-		totalSalary = (salary * numWorkDays);
+		    default: 
+		    	workHours = 0;
+		}	
+		int dailyWage = (wagePerHour * workHours);
+		System.out.println("Part time or Full time salray of employe :" +dailyWage);
 		}
 		System.out.println("Wages for a month :" +totalSalary);
 	}
