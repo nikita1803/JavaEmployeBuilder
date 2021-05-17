@@ -5,30 +5,32 @@ public class EmployeBuilder
 	public static void main(String[] args) 
 	{
 		System.out.println("Welcome in employee wage");
-		int isPartime = 2;
-		int isFullTime = 1;
 		int wagePerHour = 20;
 		int workHours = 0;
 		int totalSalary = 0;
 		int numWorkDays = 20;
+		int totalEmpHours = 0;
+		int workDays = 0;
 		for( int day = 1; day <= numWorkDays; day++)
 		{
-		int attendance = (int) ((Math.random() * 10) % 3 + 1);
-		switch (attendance)
-		{
-			case 1: 
-				workHours = 8;
-			break;
-			case 2: 
-				workHours = 4;
-			break;
-		    default: 
-		    	workHours = 0;
-		}	
-		int dailyWage = (wagePerHour * workHours);
-		System.out.println("Part time or Full time salray of employe :" +dailyWage);
+			workDays++ ;
+			int attendance = (int) ((Math.random() * 10) % 3);
+			switch (attendance)
+			{
+				case 1: 
+					workHours = 8;
+				break;
+				case 2: 
+					workHours = 4;
+				break;
+				default: 
+					workHours = 0;
+			}
+			totalEmpHours = (workHours + totalEmpHours);
+			System.out.println("Total Working hours :" +totalEmpHours);
 		}
-		System.out.println("Wages for a month :" +totalSalary);
+		totalSalary = (totalEmpHours * wagePerHour);
+		System.out.println("Total Wages for a working hours and days :" +totalSalary);
 	}
 }
 
