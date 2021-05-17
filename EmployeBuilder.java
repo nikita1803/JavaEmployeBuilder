@@ -6,8 +6,6 @@ public class EmployeBuilder
 	{
 		System.out.println("Welcome in employee wage");
 		
-		int isPartime = 1;
-		int isFullTime = 2;
 		int hrsInMonth = 100;
 		int wagePerHour = 20;
 		int numWorkDays = 20;
@@ -32,13 +30,10 @@ public class EmployeBuilder
 					workHours = 0;
 			}
 			totalEmpHours = (workHours + totalEmpHours);
-			System.out.println("Total Working hours :");
-			System.out.println (totalEmpHours);
-			
+			System.out.println("Total Working hours :" +totalEmpHours);
 		}
 		totalSalary = (totalEmpHours * wagePerHour);
-		System.out.println("Total Wages for a working hours and days :");
-		System.out.println (totalSalary);
+		System.out.println("Total Wages for a working hours and days :" +totalSalary);
 	}
 }
 
