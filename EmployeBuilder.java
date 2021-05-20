@@ -5,10 +5,24 @@ public class EmployeBuilder
 	public final static int fullday = 1;
 	public final static int halfday = 2;
 	
-		public static int Attendance(String companyName , int MaxHours , int WagePerHour,int TotalWorkDays ) 
+	private final String companyName ;
+	private final int WagePerHour ;
+	private int workDays ;
+	private final int MaxHours;
+	public int totalSallary;
+	
+	public EmployeBuilder(String companyName , int WagePerHour , int workDays , int MaxHours)
+	{
+		this.companyName = companyName;
+		this.WagePerHour = WagePerHour;
+		this.workDays = workDays;
+		this.MaxHours = MaxHours;
+	}
+		public double calculateEmpWage() 
 		{
-			int workHours = 0 ,empHours = 0 ,workDays = 0;
-			while(workHours <= MaxHours && workDays <= TotalWorkDays)
+			int workHours = 0 ,empHours = 0 ;
+			int TotalWorkDays = 0;
+			while(workHours <= MaxHours && TotalWorkDays <= workDays)
 			{
 				workDays++ ;	
 				int attendance = (int) Math.floor(Math.random() * 10) % 3; 
@@ -26,17 +40,20 @@ public class EmployeBuilder
 				workHours += empHours;
 			
 			}
-			System.out.println("Total working days" + workDays + "Total working hours" + workHours );
+			System.out.println("Total working days" + workDays +  "Total working hours" + workHours );
 			int totalSalary = ( WagePerHour * workHours);
-			System.out.println("Total Wages of the employee :" +totalSalary);
 			return totalSalary;
 		}
 		public static void main(String[] args)
 		{
 			System.out.println("Welcome in employee wage");
 			
-			Attendance("Honda", 50, 7, 10);
-			Attendance("Relience", 50, 6, 10);
+			EmployeBuilder Honda = new EmployeBuilder("Honda", 50, 7, 10);
+			EmployeBuilder Relience = new EmployeBuilder("Relience", 50, 6, 10);
+			double salaryHonda = Honda.calculateEmpWage();
+			System.out.println("Employe Wage of honda is : " +salaryHonda);
+			double salaryRelience =Relience.calculateEmpWage();
+			System.out.println("Employe Wage of relience is : " +salaryRelience);
 		}
 }
 
