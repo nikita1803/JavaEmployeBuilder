@@ -1,51 +1,53 @@
 package employeBuilderUC1;
 
 import java.util.Scanner;
-import java.util.ArrayList;
+import employebuilder.override;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 /**
  * EmployeBuilder is a class of public type
  * @author OM NAMO NAMAH
  * Initializing two static variable
  */
-public class EmployeBuilder 
+interface IcomputeEmpWage{
+	public void addCompanyEmpWage(String company, int empRatePerHour,int numOfWorkingDays, int maxHoursPerMonth);
+	public void computeEmpWage();
+	public int getTotalWage1(String company);
+}
+public class EmployeBuilder implements IcomputeEmpWage
 {	
 	public static final int IS_PART_TIME = 1 ;
 	public static final int IS_FULL_TIME = 2;
-
 	private int numOfCompany = 0;
-	private CompanyEmpwage[] companyEmpwageArray;
+	private LinkedList<CompanyEmpwage> companyEmpWageList;
+	private Map<String,CompanyEmpwage> companyToEmpWageMap;
 /**
  * EmployeBuilder is a constructor of public class
  * Initializing an array of CompanyEmpWage  
+ * @return 
  */
 	public EmployeBuilder()
 	{
-		companyEmpwageArray = new CompanyEmpwage[5];
+		companyEmpWageList = new LinkedList<>();
+		companyToEmpWageMap = new HashMap<>();
 	}
-/**
- * addCompanyEmpWage is a a function of private type
- * @param company , empRatePerHour , numorworkingDays , maxHoursPerMonth as a argument
- * created a array of companyEmpWage which stores the number of company 
- * cling the constructor of company employewage 
- */
-	private void addCompanyEmpwage(String company, int empRatePerHour,int numorworkingDays, int maxHoursPerMonth) 
-	{
-		companyEmpwageArray[numOfCompany] = new CompanyEmpwage(company,empRatePerHour,numorworkingDays,maxHoursPerMonth);
-		numOfCompany++;
-	}
+
 	/**
 	 * computeEmpWage is a function which is use to calculate the employee wage .
 	 * function is void type which returns nothing .	
 	 */
-	private void computeEmpWage() 
+	public void computeEmpWage() 
 	{
-		for (int i = 0; i < numOfCompany; i++)
+		for (int i = 0; i < companyEmpWageList.size(); i++)
 		{
-			companyEmpwageArray[i].setTotalEmpwage(this.computeEmpwage(companyEmpwageArray[i]));
-			System.out.println(companyEmpwageArray[i]);	
+			CompanyEmpwage companyEmpWage = companyEmpWageList.get(i);
+			companyEmpWage.setTotalEmpwage(this.computeEmpwage(companyEmpWage));
+			System.out.println(companyEmpWage);	
 		}
 	}
+	
 	/**
 	 *  using here the method overloading because using the same name of the method with different parameter. 
 	 *  Here we are calculating total working days and total employee hour.
@@ -72,24 +74,44 @@ public class EmployeBuilder
 					empHrs = 0;
 			}
 				totalEmpHrs += empHrs;
-				System.out.println("Total working Days : " +totalWorkingDays+   " Total Employee Hour : "+empHrs );
+				System.out.println("Total working Days : " +totalWorkingDays+   " Total Employee Hour : "+empHrs);
 		}
 		return totalEmpHrs * companyEmpwage.empRatePerHour;	
 	}
 	/**
 	 * This is a main class where we are calling the function . 
-	 * passing the daya of 2 companies to calculate the employee wage.
+	 * passing the data of 2 companies to calculate the employee wage.
 	 * @param args
 	 */
 	public static void main(String[] args) 
 	{
-		EmployeBuilder empWageBuilder = new EmployeBuilder();
-
-		empWageBuilder.addCompanyEmpwage("DMart", 28, 10, 10); 
-		empWageBuilder.addCompanyEmpwage("Reliance", 18, 8, 20);
-
+		IcomputeEmpWage empWageBuilder = new EmployeBuilder();
+		empWageBuilder.addCompanyEmpWage("Dmart",20,2,24);
 		empWageBuilder.computeEmpWage();
+		System.out.println("Total Wage for Dmart Company : " + empWageBuilder.getTotalWage1("Dmart"));
 	}
+	/**
+	 * addCompanyEmpWage is a a function of private type
+	 * @param company , empRatePerHour , numorworkingDays , maxHoursPerMonth as a argument
+	 * created a array of companyEmpWage which stores the number of company 
+	 * cling the constructor of company employewage 
+	 */
+		
+	@Override
+	public void addCompanyEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
+		// TODO Auto-generated method stub
+		CompanyEmpwage companyEmpWage= new CompanyEmpwage(company,empRatePerHour,numOfWorkingDays,maxHoursPerMonth);
+		companyEmpWageList.add(companyEmpWage);
+		companyToEmpWageMap.put(company,companyEmpWage);
+	}
+	@Override
+	public int getTotalWage1(String company) {
+		
+		return companyToEmpWageMap.get(company).totalEmpwage;
+	}
+	
+	
+	
 }
 /**
  * created a another class of Company Employee Wage
