@@ -1,61 +1,130 @@
 package employeBuilderUC1;
+
 import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
+/**
+ * EmployeBuilder is a class of public type
+ * @author OM NAMO NAMAH
+ * Initializing two static variable
+ */
 public class EmployeBuilder 
-{		
-	public final static int fullday = 1;
-	public final static int halfday = 2;
-	
-	private final String companyName ;
-	private final int WagePerHour ;
-	private int workDays ;
-	private final int MaxHours;
-	public int totalSallary;
-	
-	public EmployeBuilder(String companyName , int WagePerHour , int workDays , int MaxHours)
+{	
+	public static final int IS_PART_TIME = 1 ;
+	public static final int IS_FULL_TIME = 2;
+
+	private int numOfCompany = 0;
+	private CompanyEmpwage[] companyEmpwageArray;
+/**
+ * EmployeBuilder is a constructor of public class
+ * Initializing an array of CompanyEmpWage  
+ */
+	public EmployeBuilder()
 	{
-		this.companyName = companyName;
-		this.WagePerHour = WagePerHour;
-		this.workDays = workDays;
-		this.MaxHours = MaxHours;
+		companyEmpwageArray = new CompanyEmpwage[5];
 	}
-		public double calculateEmpWage() 
+/**
+ * addCompanyEmpWage is a a function of private type
+ * @param company , empRatePerHour , numorworkingDays , maxHoursPerMonth as a argument
+ * created a array of companyEmpWage which stores the number of company 
+ * cling the constructor of company employewage 
+ */
+	private void addCompanyEmpwage(String company, int empRatePerHour,int numorworkingDays, int maxHoursPerMonth) 
+	{
+		companyEmpwageArray[numOfCompany] = new CompanyEmpwage(company,empRatePerHour,numorworkingDays,maxHoursPerMonth);
+		numOfCompany++;
+	}
+	/**
+	 * computeEmpWage is a function which is use to calculate the employee wage .
+	 * function is void type which returns nothing .	
+	 */
+	private void computeEmpWage() 
+	{
+		for (int i = 0; i < numOfCompany; i++)
 		{
-			int workHours = 0 ,empHours = 0 ;
-			int TotalWorkDays = 0;
-			while(workHours <= MaxHours && TotalWorkDays <= workDays)
+			companyEmpwageArray[i].setTotalEmpwage(this.computeEmpwage(companyEmpwageArray[i]));
+			System.out.println(companyEmpwageArray[i]);	
+		}
+	}
+	/**
+	 *  using here the method overloading because using the same name of the method with different parameter. 
+	 *  Here we are calculating total working days and total employee hour.
+	 * @param companyEmpwage is a argument .
+	 * @return integer  value .
+	 */
+	private int computeEmpwage(CompanyEmpwage companyEmpwage) 
+	{
+		int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;
+
+		while (totalEmpHrs < companyEmpwage.maxHoursPerMonth && totalWorkingDays<companyEmpwage.numOfWorkingDays) 
+		{
+			totalWorkingDays++;
+			int empCheck = (int) Math.floor(Math.random() * 10) %3;
+			switch (empCheck) 
 			{
-				workDays++ ;	
-				int attendance = (int) Math.floor(Math.random() * 10) % 3; 
-				switch (attendance)
-				{
-					case fullday: 
-						empHours = 8;
-					break;
-					case halfday: 
-						empHours = 4;
-					break;
-					default: 
-						empHours = 0;
-				}
-				workHours += empHours;
-			
+				case IS_PART_TIME:
+					empHrs = 4;
+				break;
+				case IS_FULL_TIME:
+					empHrs = 8;
+				break;
+				default:
+					empHrs = 0;
 			}
-			System.out.println("Total working days" + workDays +  "Total working hours" + workHours );
-			int totalSalary = ( WagePerHour * workHours);
-			return totalSalary;
+				totalEmpHrs += empHrs;
+				System.out.println("Total working Days : " +totalWorkingDays+   " Total Employee Hour : "+empHrs );
 		}
-		public static void main(String[] args)
-		{
-			System.out.println("Welcome in employee wage");
-			
-			EmployeBuilder Honda = new EmployeBuilder("Honda", 50, 7, 10);
-			EmployeBuilder Relience = new EmployeBuilder("Relience", 50, 6, 10);
-			double salaryHonda = Honda.calculateEmpWage();
-			System.out.println("Employe Wage of honda is : " +salaryHonda);
-			double salaryRelience =Relience.calculateEmpWage();
-			System.out.println("Employe Wage of relience is : " +salaryRelience);
-		}
+		return totalEmpHrs * companyEmpwage.empRatePerHour;	
+	}
+	/**
+	 * This is a main class where we are calling the function . 
+	 * passing the daya of 2 companies to calculate the employee wage.
+	 * @param args
+	 */
+	public static void main(String[] args) 
+	{
+		EmployeBuilder empWageBuilder = new EmployeBuilder();
+
+		empWageBuilder.addCompanyEmpwage("DMart", 28, 10, 10); 
+		empWageBuilder.addCompanyEmpwage("Reliance", 18, 8, 20);
+
+		empWageBuilder.computeEmpWage();
+	}
 }
-
-	
-
+/**
+ * created a another class of Company Employee Wage
+ * taken some variable as a final which will never change.
+ * @author OM NAMO NAMAH
+ *
+ */
+class CompanyEmpwage
+{
+	public final String company;
+	public final int empRatePerHour;
+	public final int numOfWorkingDays;
+	public final int maxHoursPerMonth;
+	public int totalEmpwage;
+/**
+ * Created a parameterize constructor of Company employee wage 
+ * @param company , empRatePerHour , numOfWorkingDays , maxHoursPerMonth as argument
+ */
+	public CompanyEmpwage(String company, int empRatePerHour,int numOfWorkingDays, int maxHoursPerMonth)
+	{
+		this.company = company;
+		this.empRatePerHour = empRatePerHour;
+		this.numOfWorkingDays = numOfWorkingDays;
+		this.maxHoursPerMonth = maxHoursPerMonth;
+	}
+	/**
+	 * Created a seater of total employee wage use to set the value of totalEmpwage
+	 * @param totalEmpwage as a argument.
+	 */
+	public void setTotalEmpwage(int totalEmpwage) 
+	{
+		this.totalEmpwage = totalEmpwage;
+	}	
+	public String toString()
+	{
+		return "Total Emp Wage for Company:" +company+ " is :" + totalEmpwage;
+	}
+}
