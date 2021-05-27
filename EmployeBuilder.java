@@ -33,7 +33,6 @@ public class EmployeBuilder implements IcomputeEmpWage
 		companyEmpWageList = new LinkedList<>();
 		companyToEmpWageMap = new HashMap<>();
 	}
-
 	/**
 	 * computeEmpWage is a function which is use to calculate the employee wage .
 	 * function is void type which returns nothing .	
@@ -47,7 +46,6 @@ public class EmployeBuilder implements IcomputeEmpWage
 			System.out.println(companyEmpWage);	
 		}
 	}
-	
 	/**
 	 *  using here the method overloading because using the same name of the method with different parameter. 
 	 *  Here we are calculating total working days and total employee hour.
@@ -86,7 +84,16 @@ public class EmployeBuilder implements IcomputeEmpWage
 	public static void main(String[] args) 
 	{
 		IcomputeEmpWage empWageBuilder = new EmployeBuilder();
-		empWageBuilder.addCompanyEmpWage("Dmart",20,2,24);
+		Scanner input = new Scanner(System.in);
+		System.out.println("Enter company name");
+		String company = input.nextLine();
+		System.out.println("Enter Employee wage per hours");
+		int wage=input.nextInt();
+		System.out.println("Enter Maximum working hours");
+		int maxhours=input.nextInt();
+		System.out.println("Enter Working days");
+		int maxdays=input.nextInt();
+		empWageBuilder.addCompanyEmpWage(company,wage,maxdays,maxhours);
 		empWageBuilder.computeEmpWage();
 		System.out.println("Total Wage for Dmart Company : " + empWageBuilder.getTotalWage1("Dmart"));
 	}
@@ -96,7 +103,6 @@ public class EmployeBuilder implements IcomputeEmpWage
 	 * created a array of companyEmpWage which stores the number of company 
 	 * cling the constructor of company employewage 
 	 */
-		
 	@Override
 	public void addCompanyEmpWage(String company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth) {
 		// TODO Auto-generated method stub
@@ -109,9 +115,6 @@ public class EmployeBuilder implements IcomputeEmpWage
 		
 		return companyToEmpWageMap.get(company).totalEmpwage;
 	}
-	
-	
-	
 }
 /**
  * created a another class of Company Employee Wage
