@@ -74,7 +74,7 @@ public class EmployeBuilder implements IcomputeEmpWage
 					empHrs = 0;
 			}
 				totalEmpHrs += empHrs;
-				System.out.println("Total working Days : " +totalWorkingDays+   " Total Employee Hour : "+empHrs);
+				System.out.println("Total working Days : " +totalWorkingDays+   " Total Employee Hour : "+empHrs+ " Day Wage : " +empHrs*companyEmpwage.empRatePerHour  );
 		}
 		return totalEmpHrs * companyEmpwage.empRatePerHour;	
 	}
